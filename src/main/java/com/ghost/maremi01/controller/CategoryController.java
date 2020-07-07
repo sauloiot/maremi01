@@ -2,7 +2,9 @@ package com.ghost.maremi01.controller;
 
 import com.ghost.maremi01.exception.PersonalNotFoundException;
 import com.ghost.maremi01.model.Category;
+import com.ghost.maremi01.model.Market;
 import com.ghost.maremi01.repository.CategoryRepository;
+import com.ghost.maremi01.repository.MarketRepository;
 import com.ghost.maremi01.resource.CategoryResourceAssembler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
@@ -26,11 +28,15 @@ public class CategoryController {
     private final CategoryRepository repository;
 
     @Autowired
+    private final MarketRepository marketRepository;
+
+    @Autowired
     private final CategoryResourceAssembler assembler;
 
-    public CategoryController(CategoryRepository repository, CategoryResourceAssembler assembler) {
+    public CategoryController(CategoryRepository repository, CategoryResourceAssembler assembler, MarketRepository marketRepository) {
         this.repository = repository;
-        this. assembler = assembler;
+        this.assembler = assembler;
+        this.marketRepository = marketRepository;
     }
 
     //GET all
@@ -66,6 +72,7 @@ public class CategoryController {
     public ResponseEntity<?> postNewProduct(@RequestBody Category newCategory) throws URISyntaxException {
 
         EntityModel<Category> category = assembler.toModel(repository.save(newCategory));
+        //newCategory.getMarket();
         System.out.println("HTTP POST: PRODUCT:" + newCategory + " created");
 
         return ResponseEntity

@@ -28,7 +28,6 @@ public class Category implements Serializable {
     @JoinColumn(name = "market_id")
     private Market market;
 
-
     public Category() {
     }
 
@@ -71,6 +70,26 @@ public class Category implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    //JOINS
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public Market getMarket() {
+        return market;
+    }
+//    public Long getMarket() {
+//        return market.getId();
+//    }
+
+    public void setMarket(Market market) {
+        this.market = market;
     }
 
     @Override

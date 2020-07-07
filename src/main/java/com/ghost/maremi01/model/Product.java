@@ -82,6 +82,23 @@ public class Product implements Serializable {
         this.imgUrl = imgUrl;
     }
 
+    //JOINS
+    public Category getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Category categories) {
+        this.categories = categories;
+    }
+
+    public Market getMarket() {
+        return market;
+    }
+
+    public void setMarket(Market market) {
+        this.market = market;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
