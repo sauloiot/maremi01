@@ -1,7 +1,11 @@
 package com.ghost.maremi01.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +19,15 @@ public class Category implements Serializable {
     private String name;
     private String description;
     private String imgUrl;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "categories")
+    private List<Product> products = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "market_id")
+    private Market market;
+
 
     public Category() {
     }

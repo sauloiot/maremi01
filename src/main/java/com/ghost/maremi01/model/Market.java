@@ -1,8 +1,12 @@
 package com.ghost.maremi01.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -19,6 +23,16 @@ public class Market implements Serializable {
     private String phone;
     private String adress;
     private String imgUrl;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "market")
+    private List<Product> products = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "market")
+    private List<Category> categories = new ArrayList<>();
+
+
 
     public Market() {
     }

@@ -2,7 +2,9 @@ package com.ghost.maremi01.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_product")
@@ -17,6 +19,16 @@ public class Product implements Serializable {
     private Double price;
     private String description;
     private String imgUrl;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category categories;
+
+    @ManyToOne
+    @JoinColumn(name = "market_id")
+    private Market market;
+
+
 
     public Product() {
     }
