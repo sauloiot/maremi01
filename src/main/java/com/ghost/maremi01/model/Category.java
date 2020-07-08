@@ -19,6 +19,7 @@ public class Category implements Serializable {
     private String name;
     private String description;
     private String imgUrl;
+    private Long id_market;
 
     @JsonIgnore
     @OneToMany(mappedBy = "categories")
@@ -31,12 +32,14 @@ public class Category implements Serializable {
     public Category() {
     }
 
-    public Category(Long id, String name,String description, String imgUrl) {
+    public Category(Long id, String name,String description, String imgUrl, Market market, Long id_market) {
         super();
         this.id = id;
         this.name = name;
         this.description = description;
         this.imgUrl = imgUrl;
+        this.market = market;
+        this.id_market = id_market;
 
     }
 
@@ -72,6 +75,17 @@ public class Category implements Serializable {
         this.description = description;
     }
 
+    //ID_MARKET
+
+
+    public Long getId_market() {
+        return id_market;
+    }
+
+    public void setId_market(Long id_market) {
+        this.id_market = id_market;
+    }
+
     //JOINS
     public List<Product> getProducts() {
         return products;
@@ -84,13 +98,13 @@ public class Category implements Serializable {
     public Market getMarket() {
         return market;
     }
-//    public Long getMarket() {
+//    public Long getMarketid() {
+//
 //        return market.getId();
+//
 //    }
 
-    public void setMarket(Market market) {
-        this.market = market;
-    }
+    public void setMarket(Market market) {this.market = market; }
 
     @Override
     public boolean equals(Object o) {

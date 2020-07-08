@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.ControllerLinkBuilder.linkTo;
@@ -71,6 +72,7 @@ public class CategoryController {
     @PostMapping
     public ResponseEntity<?> postNewProduct(@RequestBody Category newCategory) throws URISyntaxException {
 
+
         EntityModel<Category> category = assembler.toModel(repository.save(newCategory));
         //newCategory.getMarket();
         System.out.println("HTTP POST: PRODUCT:" + newCategory + " created");
@@ -89,6 +91,7 @@ public class CategoryController {
                     product.setName(newCategory.getName());
                     product.setDescription(newCategory.getDescription());
                     product.setImgUrl(newCategory.getImgUrl());
+                    product.setMarket(newCategory.getMarket());
 
                     return repository.save(product);
                 })
